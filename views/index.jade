@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1= title
+
+	form(action="/auth/facebook", method="GET")
+		input(type="hidden", name="redirect", value="/account")
+		button.btn.btn-primary(type="submit") Login with Facebook
+

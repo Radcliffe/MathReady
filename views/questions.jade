@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	script(src="//cdn.tinymce.com/4/tinymce.min.js")
+	script(type='text/javascript').
+		tinymce.init({ selector:'textarea' });
+	h1 Questions
+
+	table
+		tr
+			th #
+			th Title
+			th CourseId
+			th ContentAreaId
+			th TopicId
+			th Prompt
+			th Answer
+			th Alternatives
+		each question, index in questions
+			tr
+				td
+					a(href="/questions/#{question.id}")= index+1
+				td= question.title
+				td= question.courseId
+				td= question.contentId
+				td= question.topicId
+				td!= question.prompt
+				td= question.answer
+				td= question.alt

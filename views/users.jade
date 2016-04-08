@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	h1 Users
+	table
+		tr
+			th Name
+			th Email
+			th Role
+		for user in users
+			tr
+				td= user.name
+				td= user.email
+				td= user.role

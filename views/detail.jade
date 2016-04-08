@@ -1,0 +1,30 @@
+extends layout
+block content
+	h1 Question details
+	dl
+		dt Name
+		dd= question.title
+
+		dt Course
+		dd= question.courseId
+
+		dt Content Area
+		dd= question.contentId
+		
+		dt Topic
+		dd= question.topicId
+
+		dt Prompt
+		dd!= question.prompt
+
+		dt Answer
+		dd= question.answer
+
+		dt Alternative 1
+		dd= question.alt[0]
+
+		dt Alternative 2
+		dd= question.alt[1]
+
+		dt Alternative 3
+		dd= question.alt[2]

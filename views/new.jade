@@ -1,0 +1,47 @@
+extends layout
+
+block content
+	script(src="/javascripts/newquestion.js")
+	script(src="//cdn.tinymce.com/4/tinymce.min.js")
+	script(type='text/javascript').
+		tinymce.init({ selector:'textarea' });
+	
+	h1 New question
+
+	form(action="/addquestion", method="POST")
+		.input-group
+			span.input-group-addon Title:
+			input.form-control(type="text" name="title")
+		.input-group
+			span.input-group-addon Course:
+			select.form-control#selectCourse(name="courseId")
+				each course, index in courses
+					option(value="#{index+1}")= course.Course
+		
+		.input-group
+			span.input-group-addon Content area:
+			select.form-control#selectContentArea(name="contentId")
+				option(value="0") --
+				each contentArea, index in contentAreas
+					option(class="c #{contentArea.CourseId}" value="#{index+1}")= contentArea.ContentArea
+
+		.input-group
+			span.input-group-addon Topic:
+			select.form-control#selectTopic(name="topicId")
+				option(value="0") --
+				each topic, index in topics
+					option(class="t #{topic.CourseId} #{topic.CourseId}-#{topic.ContentId}" value="#{index+1}")= topic.Topic
+
+		textarea#questionprompt(name="prompt" rows="8" cols="50" placeholder="Enter question text here.")
+		.input-group
+			span.input-group-addon Answer
+			input.form-control(type="text" name="answer") 
+		.input-group
+			span.input-group-addon
+			input(type="text" name="alt1" placeholder="Choice 1" size="16")
+			span.input-group-addon
+			input(type="text" name="alt2" placeholder="Choice 2" size="16")
+			span.input-group-addon
+			input(type="text" name="alt3" placeholder="Choice 3" size="16")
+		br
+		button.btn.btn-lg.btn-primary(type="submit") Submit
