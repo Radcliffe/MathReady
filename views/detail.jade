@@ -1,6 +1,22 @@
 extends layout
 block content
-	h1 Question details
+	script(src="//cdn.tinymce.com/4/tinymce.min.js")
+	script(type='text/javascript').
+		tinymce.init({ selector:'textarea' });
+	
+	h1 Edit Question
+
+	form(action="/addquestion", method="POST")
+		input(type="hidden" name="question-id" value="#{question._id}")
+		.input-group
+			span.input-group-addon Title:
+			input#title.form-control(type="text" name="title" value="#{question.title}")
+		.input-group
+			span.input-group-addon Course:
+			select.form-control#selectCourse(name="courseId")
+				each course, index in courses
+					option(value="#{index+1}")= course.Course
+
 	dl
 		dt Name
 		dd= question.title
@@ -28,3 +44,8 @@ block content
 
 		dt Alternative 3
 		dd= question.alt[2]
+
+	script(type="text/javascript").
+		$(document).ready(function(){
+		    $('#selectCourse').val("#{question.courseId}");
+		});

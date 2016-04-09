@@ -9,6 +9,8 @@ block content
 	h1 New question
 
 	form(action="/addquestion", method="POST")
+		input#original-course(type="hidden" value="1")
+		input#original-content-area(type="hidden" value="1")
 		.input-group
 			span.input-group-addon Title:
 			input.form-control(type="text" name="title")
