@@ -17,22 +17,24 @@ block content
 		.input-group
 			span.input-group-addon Course:
 			select.form-control#selectCourse(name="courseId")
-				each course, index in courses
-					option(value="#{index+1}")= course.Course
+				each course in courses
+					option(value="#{course.CourseId}")= course.Course
 		
 		.input-group
 			span.input-group-addon Content area:
 			select.form-control#selectContentArea(name="contentId")
 				option(value="0") --
-				each contentArea, index in contentAreas
-					option(class="c #{contentArea.CourseId}" value="#{index+1}")= contentArea.ContentArea
+				each contentArea in contentAreas
+					option(class="content course-#{contentArea.CourseId}" 
+					value="#{contentArea.ContentId}")= contentArea.ContentArea
 
 		.input-group
 			span.input-group-addon Topic:
 			select.form-control#selectTopic(name="topicId")
 				option(value="0") --
-				each topic, index in topics
-					option(class="t #{topic.CourseId} #{topic.CourseId}-#{topic.ContentId}" value="#{index+1}")= topic.Topic
+				each topic in topics
+					option(class="topic content-#{topic.ContentId}" 
+					value="#{topic.TopicId}")= topic.Topic
 
 		textarea#questionprompt(name="prompt" rows="8" cols="50" placeholder="Enter question text here.")
 		.input-group
