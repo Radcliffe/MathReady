@@ -4,16 +4,16 @@ $(document).ready( function () {
 
 	function setCourse(sel) {
 		selectedCourse = sel;
-    	$('option.c').hide();
-   		$('option.' + sel).show();
+    	$('option.content').hide();
+   		$('option.course-' + sel).show();
    		setContentArea(0);
    		$('#selectContentArea option[value="0"]').prop('selected', true);
 	}
 	
 	function setContentArea(sel) {
 		selectedContentArea = sel;
-		$('option.t').hide();
-		$('option.' + selectedCourse + '-' + sel).show();
+		$('option.topic').hide();
+		$('option.content-' + selectedCourse + '-' + sel).show();
 		$('#selectTopic option[value="0"]').prop('selected', true);
 	}
 
